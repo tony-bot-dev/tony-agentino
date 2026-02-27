@@ -1,5 +1,10 @@
 {
-  "buildCommand": "echo skip",
-  "outputDirectory": ".",
-  "public": true
+  "build": {
+    "command": "echo 'No build required'",
+    "outputDirectory": "."
+  },
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
 }

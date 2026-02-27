@@ -1,7 +1,8 @@
 {
-  "buildCommand": "n/a",
+  "buildCommand": "echo 'No build needed'",
   "outputDirectory": ".",
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+  "framework": null,
+  "routes": [
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }

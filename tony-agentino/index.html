@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tony Agentino — Series Pitch</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=IM+Fell+English:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blood: #8B0000;
+    --lobster: #C0392B;
+    --gold: #C9A84C;
+    --gold-dim: #7a6330;
+    --cream: #F2EDDF;
+    --dark: #0f0b08;
+    --charcoal: #1a1510;
+    --mid: #2d2418;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: var(--cream);
+    font-family: 'IM Fell English', serif;
+    overflow-x: hidden;
+  }
+
+  /* GRAIN OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 60px 20px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 60% 50% at 50% 80%, rgba(139,0,0,0.35) 0%, transparent 70%),
+      radial-gradient(ellipse 80% 40% at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 60%);
+  }
+
+  .lobster-emoji {
+    font-size: clamp(60px, 10vw, 120px);
+    display: block;
+    margin-bottom: 20px;
+    animation: float 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 30px rgba(192,57,43,0.6));
+    position: relative;
+    z-index: 1;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-15px) rotate(5deg); }
+  }
+
+  .hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(9px, 1.2vw, 12px);
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.3s ease forwards;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 12vw, 140px);
+    font-weight: 900;
+    line-height: 0.9;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.5s ease forwards;
+  }
+
+  .hero-title .first { color: var(--cream); }
+  .hero-title .last {
+    color: var(--lobster);
+    font-style: italic;
+    display: block;
+    text-shadow: 0 0 80px rgba(192,57,43,0.5);
+  }
+
+  .hero-tagline {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: clamp(14px, 2.5vw, 22px);
+    color: var(--gold);
+    margin-top: 24px;
+    max-width: 600px;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.7s ease forwards;
+  }
+
+  .divider {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 40px auto;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.9s ease forwards;
+  }
+
+  .divider::before {
+    content: '✦';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    font-size: 12px;
+    background: var(--dark);
+    padding: 0 8px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SECTIONS */
+  section {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 80px 30px;
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 24px;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 28px;
+  }
+
+  h2 em {
+    color: var(--lobster);
+    font-style: italic;
+  }
+
+  p {
+    font-size: clamp(15px, 2vw, 18px);
+    line-height: 1.8;
+    color: rgba(242,237,223,0.8);
+    margin-bottom: 20px;
+  }
+
+  p strong {
+    color: var(--cream);
+    font-weight: normal;
+  }
+
+  /* LOGLINE BLOCK */
+  .logline-block {
+    background: linear-gradient(135deg, rgba(139,0,0,2), rgba(201,168,76,0.05));
+    border: 1px solid rgba(139,0,0,0.4);
+    border-left: 4px solid var(--lobster);
+    padding: 30px 36px;
+    margin: 40px 0;
+    position: relative;
+  }
+
+  .logline-block::before {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    color: var(--lobster);
+    opacity: 0.3;
+    line-height: 1;
+  }
+
+  .logline-block p {
+    font-style: italic;
+    font-size: clamp(16px, 2.5vw, 21px);
+    color: var(--cream);
+    margin: 0;
+  }
+
+  /* CHARACTERS */
+  .character-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .character-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 28px;
+    position: relative;
+    transition: border-color 0.3s, background 0.3s;
+  }
+
+  .character-card:hover {
+    border-color: rgba(192,57,43,0.5);
+    background: rgba(139,0,0,0.08);
+  }
+
+  .char-icon { font-size: 32px; margin-bottom: 14px; display: block; }
+
+  .char-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .char-role {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 14px;
+  }
+
+  .char-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(242,237,223,0.7);
+    margin: 0;
+  }
+
+  /* EPISODE */
+  .episode-block {
+    background: var(--charcoal);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 40px;
+    margin-top: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .episode-block::after {
+    content: '1';
+    position: absolute;
+    right: -10px;
+    top: -20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 160px;
+    font-weight: 900;
+    color: rgba(201,168,76,0.05);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .ep-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--lobster);
+    margin-bottom: 12px;
+  }
+
+  .ep-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 4vw, 34px);
+    font-style: italic;
+    color: var(--cream);
+    margin-bottom: 20px;
+  }
+
+  /* TONE BAR */
+  .tone-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .tone-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold);
+    background: rgba(201,168,76,0.05);
+  }
+
+  /* TANK QUOTE */
+  .tank-section {
+    text-align: center;
+    padding: 100px 30px;
+    border-top: 1px solid rgba(201,168,76,0.15);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tank-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(139,0,0,0.2) 0%, transparent 70%);
+  }
+
+  .tank-glow {
+    font-size: 80px;
+    display: block;
+    margin-bottom: 30px;
+    filter: drop-shadow(0 0 40px rgba(192,57,43,0.8));
+    position: relative;
+    z-index: 1;
+  }
+
+  .tank-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 4vw, 36px);
+    font-style: italic;
+    color: var(--cream);
+    max-width: 700px;
+    margin: 0 auto 16px;
+    line-height: 1.4;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tank-attr {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 60px 20px;
+    border-top: 1px solid rgba(201,168,76,0.1);
+  }
+
+  footer p {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin: 0;
+  }
+
+  .red { color: var(--lobster); }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--dark); }
+  ::-webkit-scrollbar-thumb { background: var(--blood); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <span class="lobster-emoji">🦞</span>
+  <div class="hero-eyebrow">An Original Animated Series</div>
+  <h1 class="hero-title">
+    <span class="first">Tony</span>
+    <span class="last">Agentino</span>
+  </h1>
+  <p class="hero-tagline">"The mess is always there. You just move it around."</p>
+  <div class="divider"></div>
+</div>
+
+<!-- LOGLINE -->
+<section>
+  <div class="section-label">The Concept</div>
+  <h2>Waste Management.<br><em>With Consequences.</em></h2>
+  <div class="logline-block">
+    <p>A guilt-ridden Italian-American mobster runs a waste management empire in New Jersey, struggles with a therapist who can't know his real job, and disposes of his problems — one lobster tank at a time.</p>
+  </div>
+  <p>Tony Agentino is not a bad man. He is a <strong>man who does bad things</strong> — and knows the difference, which is the part that keeps him up at night. He inherited a business. He honors a code. And he has a basement full of very angry, very clawless lobsters that he treats as his last resort.</p>
+  <p>He pulls everyone out before the end. That's his line. He's never crossed it. <em>Not yet.</em></p>
+  <div class="tone-list">
+    <span class="tone-tag">Dark Comedy</span>
+    <span class="tone-tag">Character Drama</span>
+    <span class="tone-tag">Adult Animation</span>
+    <span class="tone-tag">Crime</span>
+    <span class="tone-tag">Therapy Sessions</span>
+    <span class="tone-tag">BoJack Horseman DNA</span>
+    <span class="tone-tag">Italian-American</span>
+  </div>
+</section>
+
+<!-- THE TANK -->
+<div class="tank-section">
+  <span class="tank-glow">🦞🦞🦞</span>
+  <p class="tank-quote">"You shoot a man, it's over in a second. He suffers nothing. This — this makes them <em>think.</em>"</p>
+  <p class="tank-attr">— Tony Agentino, Episode 1</p>
+</div>
+
+<!-- CHARACTERS -->
+<section>
+  <div class="section-label">The People</div>
+  <h2>Characters Who <em>Stick Around</em></h2>
+  <p>Every person in Tony's world is a version of the question he can't answer: <em>is this who I actually am?</em></p>
+  <div class="character-grid">
+    <div class="character-card">
+      <span class="char-icon">🤵</span>
+      <div class="char-name">Tony Agentino</div>
+      <div class="char-role">Owner. Operator. Problem.</div>
+      <p class="char-desc">42. Beautiful suits. Terrible at lying to himself. Cries at wedding commercials. Runs Agentino Sanitation Solutions — which is, obviously, a mob front. Refuses to use guns on principle. The lobster tank is his mercy.</p>
+    </div>
+    <div class="character-card">
+      <span class="char-icon">🧠</span>
+      <div class="char-name">Dr. Carla Russo</div>
+      <div class="char-role">Therapist. Suspicious.</div>
+      <p class="char-desc">Brilliant, increasingly uneasy. Believes Tony works in "corporate logistics." Notices his metaphors are too specific, his pauses too considered. Doesn't know what she doesn't know — yet.</p>
+    </div>
+    <div class="character-card">
+      <span class="char-icon">🦞</span>
+      <div class="char-name">Sal</div>
+      <div class="char-role">Cousin. Caretaker. True Believer.</div>
+      <p class="char-desc">Loyal to Tony. Deeply, catastrophically stupid. Manages the lobster tank. Names all the lobsters. Gets attached. Has opinions about which ones "seem tired" and shouldn't be used this week.</p>
+    </div>
+    <div class="character-card">
+      <span class="char-icon">👵</span>
+      <div class="char-name">Donna Agentino</div>
+      <div class="char-role">Mother. Architect. Ghost.</div>
+      <p class="char-desc">70s. Tiny. Terrifying. She knows everything about the business and has never once acknowledged it directly. Her dinners are mandatory. Her silences are policy.</p>
+    </div>
+    <div class="character-card">
+      <span class="char-icon">🧑</span>
+      <div class="char-name">Marco</div>
+      <div class="char-role">The Next One. The Problem.</div>
+      <p class="char-desc">Tony's protégé. Too smart. Too moral. A mirror Tony can't stop looking at. His eventual choice will force Tony to confront whether the life can be done with clean hands — or at all.</p>
+    </div>
+    <div class="character-card">
+      <span class="char-icon">🌊</span>
+      <div class="char-name">The Tank</div>
+      <div class="char-role">Basement. La Chela. Character.</div>
+      <p class="char-desc">It hums. It glows. It lives beneath Tony's restaurant. The lobsters have been here longer than most of Tony's men. It is the one place Tony is always, always honest.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PILOT EPISODE -->
+<section>
+  <div class="section-label">Pilot Episode</div>
+  <h2>How It <em>Begins</em></h2>
+  <div class="episode-block">
+    <div class="ep-label">Season 1 · Episode 1</div>
+    <div class="ep-title">"The Claws Are Open"</div>
+    <p>A city councilman has been skimming money from a contract and pinning it on Agentino Sanitation. Tony wants to send a message. Sal has just introduced three new lobsters to the tank — one named Frank — and is personally offended that Tony wants to use them so soon after the adjustment period.</p>
+    <p>Meanwhile, in therapy, Dr. Russo asks Tony why he always talks about <em>cleaning things up.</em></p>
+    <p>Tony thinks for a long time. Then says: <strong>"Because the mess is always there. You just move it around."</strong></p>
+    <p>The councilman goes over the tank. Screams. Is pulled out. Goes home. Never speaks of it. Tony drives home, watches infomercials at 2am, and cannot sleep.</p>
+  </div>
+</section>
+
+<!-- SEASON ARC -->
+<section>
+  <div class="section-label">Season 1 Arc</div>
+  <h2>Eight Episodes.<br><em>One Reckoning.</em></h2>
+  <p>Across eight episodes, a federal investigator starts circling Agentino Sanitation. Marco makes a choice that forces Tony to see himself clearly. And Dr. Russo figures something out — not about the mob, but about Tony specifically.</p>
+  <p>That he is a <strong>good man</strong> trapped inside a life that requires him to be a bad one. And that he's been in the tank longer than anyone he's ever thrown in it.</p>
+  <p>The season finale: Tony stands over the tank. Alone. Sal's gone home. The lobsters are calm. No one's in there. No one's coming. He just watches them. For a long time. The camera doesn't cut away.</p>
+</section>
+
+<!-- YOUTUBE FORMAT -->
+<section>
+  <div class="section-label">YouTube Short-Form</div>
+  <h2>Each Episode: A <em>Therapy Session.</em></h2>
+  <p>3–5 minute shorts. Tony describes what happened this week — in the most beautiful, indirect language possible. Dr. Russo responds. The audience sees the actual events in cutaways.</p>
+  <p>Funny. Dark. Occasionally devastating.</p>
+  <div class="logline-block">
+    <p>Pilot Short Title: <strong>"I Had to Move Some Things This Week"</strong></p>
+  </div>
+  <p>The format is perfect for YouTube: self-contained, character-driven, with a hook in every cold open. It builds an audience before a full series ever gets made. Tony can be introduced slowly — one therapy session at a time.</p>
+</section>
+
+<!-- FINAL QUOTE -->
+<div class="tank-section">
+  <span class="tank-glow">🦞</span>
+  <p class="tank-quote">"I named him Frank. You can't put Frank in the tank, Tony. He just got here."</p>
+  <p class="tank-attr">— Sal, every time</p>
+</div>
+
+<footer>
+  <p><span class="red">🦞</span> &nbsp; Tony Agentino &nbsp; · &nbsp; An Animated Series &nbsp; · &nbsp; Created by Abe &nbsp; <span class="red">🦞</span></p>
+</footer>
+
+</body>
+</html>
